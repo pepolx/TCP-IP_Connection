@@ -8,15 +8,12 @@ namespace TCPIP_Test
     {
         static void Main()
         {
-            TcpListener server = new TcpListener(IPAddress.Parse("127.0.0.1"), 8888); //serwer localhost
-            server.Start();
-            Console.WriteLine("Serwer jest uruchomiony.");
-
-           // Server handle = new();
+            Server server1 = new Server(IPAddress.Parse("127.0.0.1"), 8888);
+            server1.Start();         
 
             while (true)
             {
-                TcpClient client = server.AcceptTcpClient();
+                TcpClient client = server1.AcceptTcpClient();
                 Thread clientThread = new Thread(() => Server.HandleClient(client));
                 clientThread.Start();
             }
