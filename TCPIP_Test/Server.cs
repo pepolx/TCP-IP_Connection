@@ -10,6 +10,16 @@ namespace TCPIP_Test
 {
     internal class Server
     {
+        private TcpListener _listener;
+        public Server(IPAddress ip, int port)
+        {
+            _listener = new TcpListener(ip, port);
+        }
+        public void Start()
+        {
+            _listener.Start();
+            Console.WriteLine("Serwer jest uruchomiony.");
+        }
         public static void HandleClient(object client)
         {
             TcpClient tcpClient = (TcpClient)client;
