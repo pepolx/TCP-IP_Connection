@@ -8,7 +8,7 @@ namespace TCPIP_Test
     {
         static void Main()
         {
-            Server server1 = new Server(IPAddress.Parse("127.0.0.1"), 8888);
+            Server server1 = new Server("127.0.0.1", 8888);
             server1.Start();         
 
             while (true)
