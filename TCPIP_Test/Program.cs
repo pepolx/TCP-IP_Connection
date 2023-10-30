@@ -12,12 +12,12 @@ namespace TCPIP_Test
             server.Start();
             Console.WriteLine("Serwer jest uruchomiony.");
 
-            Server handle = new();
+           // Server handle = new();
 
             while (true)
             {
                 TcpClient client = server.AcceptTcpClient();
-                Thread clientThread = new Thread(() => handle.HandleClient(client));
+                Thread clientThread = new Thread(() => Server.HandleClient(client));
                 clientThread.Start();
             }
         }

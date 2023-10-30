@@ -10,7 +10,7 @@ namespace TCPIP_Test
 {
     internal class Server
     {
-        public void HandleClient(object client)
+        public static void HandleClient(object client)
         {
             TcpClient tcpClient = (TcpClient)client;
             NetworkStream clientStream = tcpClient.GetStream();
