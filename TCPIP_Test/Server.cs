@@ -10,13 +10,6 @@ namespace TCPIP_Test
 {
     internal class Server
     {
-
-        public void StartServer()
-        {
-            TcpListener server = new TcpListener(IPAddress.Parse("127.0.0.1"), 8888); //serwer localhost
-            server.Start();
-            Console.WriteLine("Serwer jest uruchomiony.");
-        }
         public void HandleClient(object client)
         {
             TcpClient tcpClient = (TcpClient)client;
@@ -45,15 +38,11 @@ namespace TCPIP_Test
                 string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                 Console.WriteLine("Otrzymano: " + data);
 
-                if (data == "TRIGGER")
+                if(Validator.Triger(data))
                 {
-                    // symulacja opóźnienia i wysłanie odpowiedzi
-                    Thread.Sleep(1000);
-                    string response = RandomStringGenerator.Letters(15);
-                    byte[] responseData = Encoding.ASCII.GetBytes(response);
-                    clientStream.Write(responseData, 0, responseData.Length);
-                    Console.WriteLine("Wyslano odpowiedź: " + response);
+                    Validator.Message(clientStream);
                 }
+
             }
 
             tcpClient.Close();
