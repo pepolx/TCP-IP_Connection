@@ -12,6 +12,7 @@ namespace TCPIP_Test
 {
     internal class Listener
     {
+        //Wszystko w jednym pliku heh
         static void Main()
         {
             TcpListener server = new TcpListener(IPAddress.Parse("127.0.0.1"), 8888); //serwer localhost
