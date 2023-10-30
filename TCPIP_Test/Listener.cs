@@ -16,6 +16,7 @@ namespace TCPIP_Test
         {
             TcpListener server = new TcpListener(IPAddress.Parse("127.0.0.1"), 8888); //serwer localhost
             server.Start();
+            //server.Stop();
             Console.WriteLine("Serwer jest uruchomiony.");
 
             while (true) 
@@ -26,7 +27,7 @@ namespace TCPIP_Test
             }
         }
 
-        static void HandleClient(object client)
+        static void HandleClient(object client)//pętla co jakis czas <-- TO DO | TryFinaly | Klasa Serwer z Metoda Handle
         {
             TcpClient tcpClient = (TcpClient)client;
             NetworkStream clientStream = tcpClient.GetStream();
