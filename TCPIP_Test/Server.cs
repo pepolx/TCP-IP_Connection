@@ -20,6 +20,10 @@ namespace TCPIP_Test
             _listener.Start();
             Console.WriteLine("Serwer jest uruchomiony.");
         }
+        public TcpClient AcceptTcpClient()
+        {
+            return _listener.AcceptTcpClient();
+        }
         public static void HandleClient(object client)
         {
             TcpClient tcpClient = (TcpClient)client;
