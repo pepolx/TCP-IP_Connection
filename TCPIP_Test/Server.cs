@@ -43,12 +43,10 @@ namespace TCPIP_Test
                 {
                     break;
                 }
-
                 if (bytesRead == 0)
                 {
                     break;
                 }
-
                 string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                 Console.WriteLine("Otrzymano: " + data);
 

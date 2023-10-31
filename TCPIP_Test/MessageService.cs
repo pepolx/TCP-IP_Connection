@@ -11,18 +11,20 @@ namespace TCPIP_Test
 {
     internal class MessageService
     {
-        public static bool Check(string messageFromClient)
+        RandomStringGenerator Random = new();
+        private const string desiredMessage = "TRIGGER";
+        public bool Check(string messageFromClient)
         {
-            if (messageFromClient == "TRIGGER")
+            if (messageFromClient == desiredMessage)
             {
                 return true;
             }
             return false;
         }
-        public static void Send(NetworkStream clientStream)
+        public void Send(NetworkStream clientStream)
         {
             Thread.Sleep(1000);
-            string response = RandomStringGenerator.Letters(15);
+            string response = Random.Letters(15);
             byte[] responseData = Encoding.ASCII.GetBytes(response);
             clientStream.Write(responseData, 0, responseData.Length);
             Console.WriteLine("Wyslano odpowiedź: " + response);
