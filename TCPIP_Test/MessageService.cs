@@ -9,17 +9,17 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TCPIP_Test
 {
-    internal class Validator
+    internal class MessageService
     {
-        public static bool Triger(string data)
+        public static bool Check(string messageFromClient)
         {
-            if (data == "TRIGGER")
+            if (messageFromClient == "TRIGGER")
             {
                 return true;
             }
             return false;
         }
-        public static void Message(NetworkStream clientStream)
+        public static void Send(NetworkStream clientStream)
         {
             Thread.Sleep(1000);
             string response = RandomStringGenerator.Letters(15);

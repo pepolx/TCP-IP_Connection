@@ -24,17 +24,17 @@ namespace TCPIP_Test
         {
             return _listener.AcceptTcpClient();
         }
-        public static void HandleClient(object client)
+        public void HandleClient(object client)
         {
             TcpClient tcpClient = (TcpClient)client;
             NetworkStream clientStream = tcpClient.GetStream();
 
-            byte[] buffer = new byte[1024];//miejsce na dane
+            byte[] buffer = new byte[1024];
             int bytesRead;
 
             while (true)
             {
-                bytesRead = 0;//zeruje po przeslaniu
+                bytesRead = 0;
                 try
                 {
                     bytesRead = clientStream.Read(buffer, 0, buffer.Length);
@@ -52,9 +52,9 @@ namespace TCPIP_Test
                 string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                 Console.WriteLine("Otrzymano: " + data);
 
-                if(Validator.Triger(data))
+                if(MessageService.Check(data))
                 {
-                    Validator.Message(clientStream);
+                    MessageService.Send(clientStream);
                 }
 
             }
