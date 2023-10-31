@@ -9,20 +9,22 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TCPIP_Test
 {
-    internal class Validator
+    internal class MessageService
     {
-        public static bool Triger(string data)
+        RandomStringGenerator Random = new();
+        private const string desiredMessage = "TRIGGER";
+        public bool Check(string messageFromClient)
         {
-            if (data == "TRIGGER")
+            if (messageFromClient == desiredMessage)
             {
                 return true;
             }
             return false;
         }
-        public static void Message(NetworkStream clientStream)
+        public void Send(NetworkStream clientStream)
         {
             Thread.Sleep(1000);
-            string response = RandomStringGenerator.Letters(15);
+            string response = Random.Letters(15);
             byte[] responseData = Encoding.ASCII.GetBytes(response);
             clientStream.Write(responseData, 0, responseData.Length);
             Console.WriteLine("Wyslano odpowiedź: " + response);
