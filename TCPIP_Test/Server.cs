@@ -11,9 +11,9 @@ namespace TCPIP_Test
     internal class Server
     {
         private TcpListener _listener;
-        public Server(IPAddress ip, int port)
+        public Server(string ip, int port)
         {
-            _listener = new TcpListener(ip, port);
+            _listener = new TcpListener(IPAddress.Parse(ip), port);
         }
         public void Start()
         {
