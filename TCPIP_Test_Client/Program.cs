@@ -8,7 +8,7 @@ namespace TCPIP_Test_Client
     {
         static void Main()
         {
-            using Client clientIni = new("127.0.0.1", 8888);
+            using Client clientIni = new("127.0.0.1", 8889);
             using NetworkStream clientStream = clientIni.GetStream();
             while (true)
             {

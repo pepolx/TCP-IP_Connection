@@ -8,7 +8,7 @@ namespace TCPIP_Test
     {
         static void Main()
         {
-            Server serverInicialization = new("127.0.0.1", 8888);
+            Server serverInicialization = new("127.0.0.1", 8889);
             serverInicialization.Start();         
 
             while (true)

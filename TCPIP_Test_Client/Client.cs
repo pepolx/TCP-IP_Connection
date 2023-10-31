@@ -10,18 +10,17 @@ namespace TCPIP_Test
 {
     internal class Client : IDisposable
     {
-        private TcpListener _listener;
-        private const string messageToServer = "Trigger";
+        private TcpClient _client;
+        private const string messageToServer = "TRIGGER";
 
         public Client(string ip, int port)
         {
-            _listener = new TcpListener(IPAddress.Parse(ip), port);
+            _client = new TcpClient(ip, port);
         }
 
         public NetworkStream GetStream()
-        {
-            TcpClient client = _listener.AcceptTcpClient();
-            return client.GetStream();
+        {          
+            return _client.GetStream();
         }
         public void SendingTrigger(NetworkStream clientStream)
         {
@@ -40,10 +39,10 @@ namespace TCPIP_Test
 
         public void Dispose()
         {
-            if (_listener != null)
+            if (_client != null)
             {
-                _listener.Stop();
-                _listener = null;
+                //_listener.Stop();
+                _client = null;
             }
         }
 
