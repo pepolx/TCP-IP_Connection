@@ -8,7 +8,11 @@ namespace TCPIP_Test
 {
     internal class RandomStringGenerator
     {
-        public static string Letters(int length)
+        public RandomStringGenerator()
+        { 
+
+        }  
+        public string Letters(int length)
         {
             Random random = new Random();
             string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -20,7 +24,7 @@ namespace TCPIP_Test
             }
             return new string(randomCode);
         }
-        static string Chars(int length)
+        public string Chars(int length)
         {
             Random random = new Random();
             string chars = "!@#$%^&*()_+{}|:<>?,./;'[]-=";

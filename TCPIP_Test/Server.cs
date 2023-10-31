@@ -24,6 +24,8 @@ namespace TCPIP_Test
         {
             return _listener.AcceptTcpClient();
         }
+
+        MessageService Message = new MessageService();
         public void HandleClient(object client)
         {
             TcpClient tcpClient = (TcpClient)client;
@@ -50,9 +52,9 @@ namespace TCPIP_Test
                 string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                 Console.WriteLine("Otrzymano: " + data);
 
-                if(MessageService.Check(data))
+                if(Message.Check(data))
                 {
-                    MessageService.Send(clientStream);
+                    Message.Send(clientStream);
                 }
 
             }

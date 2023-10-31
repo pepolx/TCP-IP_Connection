@@ -13,8 +13,8 @@ namespace TCPIP_Test
 
             while (true)
             {
-                TcpClient client = serverInicialization.AcceptTcpClient();
-                Thread clientThread = new(() => serverInicialization.HandleClient(client));
+                TcpClient clientMask = serverInicialization.AcceptTcpClient();
+                Thread clientThread = new(() => serverInicialization.HandleClient(clientMask));
                 clientThread.Start();
             }
         }
