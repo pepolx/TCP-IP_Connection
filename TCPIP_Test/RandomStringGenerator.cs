@@ -8,10 +8,6 @@ namespace TCPIP_Test
 {
     internal class RandomStringGenerator
     {
-        public RandomStringGenerator()
-        { 
-
-        }  
         public string Letters(int length)
         {
             Random random = new Random();
