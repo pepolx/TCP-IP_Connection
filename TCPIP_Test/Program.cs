@@ -8,13 +8,13 @@ namespace TCPIP_Test
     {
         static void Main()
         {
-            Server server1 = new Server("127.0.0.1", 8888);
-            server1.Start();         
+            Server serverInicialization = new("127.0.0.1", 8888);
+            serverInicialization.Start();         
 
             while (true)
             {
-                TcpClient client = server1.AcceptTcpClient();
-                Thread clientThread = new Thread(() => Server.HandleClient(client));
+                TcpClient clientMask = serverInicialization.AcceptTcpClient();
+                Thread clientThread = new(() => serverInicialization.HandleClient(clientMask));
                 clientThread.Start();
             }
         }
