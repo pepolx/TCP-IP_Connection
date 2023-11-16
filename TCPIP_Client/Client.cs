@@ -22,7 +22,7 @@ namespace TCPIP_Test
         {          
             return _client.GetStream();
         }
-        public void SendingTrigger(NetworkStream clientStream)
+        public void SendTrigger(NetworkStream clientStream)
         {
             byte[] data = Encoding.ASCII.GetBytes(messageToServer);
             clientStream.Write(data, 0, data.Length);

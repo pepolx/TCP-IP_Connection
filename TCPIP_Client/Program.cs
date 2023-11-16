@@ -8,12 +8,12 @@ namespace TCPIP_Test_Client
     {
         static void Main()
         {
-            using Client clientIni = new("127.0.0.1", 8889);
-            using NetworkStream clientStream = clientIni.GetStream();
+            using Client client = new("127.0.0.1", 8889);
+            using NetworkStream clientStream = client.GetStream();
             while (true)
             {
-                clientIni.SendingTrigger(clientStream);
-                clientIni.ReceiveTrigger(clientStream);
+                client.SendTrigger(clientStream);
+                client.ReceiveTrigger(clientStream);
                 
                 Thread.Sleep(5000);
             }

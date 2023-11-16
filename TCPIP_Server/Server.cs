@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TCPIP_Test
 {
@@ -25,18 +21,17 @@ namespace TCPIP_Test
             return _listener.AcceptTcpClient();
         }
 
-        MessageService Message = new MessageService();
+        private readonly MessageService _message = new MessageService();
         public void HandleClient(object client)
         {
             TcpClient tcpClient = (TcpClient)client;
             NetworkStream clientStream = tcpClient.GetStream();
 
-            byte[] buffer = new byte[1024];
-            int bytesRead;
+            var buffer = new byte[1024];
 
             while (true)
             {
-                bytesRead = 0;
+                var bytesRead = 0;
                 try
                 {
                     bytesRead = clientStream.Read(buffer, 0, buffer.Length);
@@ -49,12 +44,12 @@ namespace TCPIP_Test
                 {
                     break;
                 }
-                string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                var data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                 Console.WriteLine("Otrzymano: " + data);
 
-                if(Message.Check(data))
+                if(_message.Check(data))
                 {
-                    Message.Send(clientStream);
+                    _message.Send(clientStream);
                 }
 
             }
